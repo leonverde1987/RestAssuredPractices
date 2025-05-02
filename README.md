@@ -4,9 +4,13 @@
 
 1.- Build the project before execute it.
 
-2.- To execute in parallel ejecute the file testng_parallel.xml.
+2.- Verify are you using JAVA 24 version set up in PC and project configuration.
 
-3.- To execute one by one ejecute the file testng_onebyone.xml.
+3.- To execute in parallel execute the file testng_parallel.xml using TestNG run configuration.
+
+4.- To execute one by one execute the file testng.xml using TestNG run configuration.
+
+5.- Execute by command mvn clean test and it will be execute in parllel because configurate in the maven-surefire-plugin
 
 
 
