@@ -3,8 +3,11 @@
 #Execution Code
 
 1.- Build the project before execute it.
+
 2.- To execute in parallel ejecute the file testng_parallel.xml.
+
 3.- To execute one by one ejecute the file testng_onebyone.xml.
+
 
 #Architecture of Code
 
