@@ -1,1 +1,1 @@
-# RestAssuredPractices
+# RestAssuredExamples
