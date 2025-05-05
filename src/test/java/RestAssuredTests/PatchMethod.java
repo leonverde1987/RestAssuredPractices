@@ -1,26 +1,25 @@
 package RestAssuredTests;
 
 import Modals.Posts;
-import org.apache.commons.lang3.ObjectUtils;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PatchMethod {
-    String endpoint = "https://jsonplaceholder.typicode.com/posts/";
 
     /**
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE PATCH UPDATE OF ONE REGISTER
      */
+    @Parameters({"URL"})
     @Test(priority = 2)//Assign priority to execution with TestNG
-    public void patchMethodOfPostsTest(){
+    public void patchMethodOfPostsTest(String URL){
         Posts register = new Posts(100,10,"EPAM example patch","example patch");//Create a Test data using the object Posts
         var response = given()
                 .body(register)
                 .when()
-                .patch(endpoint+register.getId())
+                .patch(URL+"posts/"+register.getId())
                 .then()
                     .assertThat()
                     .statusCode(200)//Validate stats code
@@ -37,13 +36,14 @@ public class PatchMethod {
      * TYPE OF TEST CASE = TEST TO FAIL
      * EXPECT RESULT = VALIDATE PATCH UPDATE OF ONE REGISTER INVALID
      */
+    @Parameters({"URL"})
     @Test(priority = 2)//Assign priority to execution with TestNG
-    public void patchMethodOfPostsInvalidTest(){
+    public void patchMethodOfPostsInvalidTest(String URL){
         Posts register = new Posts(500,10,"EPAM example patch","example patch");//Create a Test data using the object Posts
         var response = given()
                 .body(register)
                 .when()
-                .patch(endpoint+register.getId())
+                .patch(URL+"posts/"+register.getId())
                 .then()
                     .assertThat()
                         .statusCode(200)//Validate stats code

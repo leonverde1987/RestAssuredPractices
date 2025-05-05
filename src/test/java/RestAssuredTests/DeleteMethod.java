@@ -1,25 +1,24 @@
 package RestAssuredTests;
 
-import Modals.Posts;
-import org.testng.annotations.Test;
 
+import Modals.Posts;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 public class DeleteMethod {
-    String endpoint = "https://jsonplaceholder.typicode.com/posts/";
-
-
     /**
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE DELETE A REGISTER
      */
+    @Parameters({"URL"})
     @Test(priority = 3)
-    public void deleteMethodOfPostsTest(){
+    public void deleteMethodOfPostsTest(String URL){
         Posts register = new Posts(101,0,"","");
         var response = given()
                 .body(register)
                 .when()
-                .delete(endpoint+register.getId())
+                .delete(URL+"posts/"+register.getId())
                 .then().statusCode(200);
         response.log().body();
     }
@@ -28,13 +27,14 @@ public class DeleteMethod {
      * TYPE OF TEST CASE = TEST TO FAIL
      * EXPECT RESULT = VALIDATE DELETE A REGISTER
      */
+    @Parameters({"URL"})
     @Test(priority = 3)
-    public void deleteMethodOfPostsInvalidTest(){
+    public void deleteMethodOfPostsInvalidTest(String URL){
         Posts register = new Posts(500,0,"","");
         var response = given()
                 .body(register)
                 .when()
-                .delete(endpoint+register.getId())
+                .delete(URL+"posts/"+register.getId())
                 .then().statusCode(200);
         response.log().body();
     }

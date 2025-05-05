@@ -1,13 +1,12 @@
 package RestAssuredTests;
 
 
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class GetMethod {
-    String endpoint = "https://jsonplaceholder.typicode.com/";//URL BASE OF THE API
     //++++++++++++++++++++++++++++++++++
     //SCENARIO TEST TO PASS
     //+++++++++++++++++++++++++++++++++++
@@ -16,10 +15,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE THE TOTAL SIZE OF THE POSTS AVAILABLE IN THE API
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodAllPosts() {
+    public void getMethodAllPosts(String URL) {
         var response = given()
-                .when().get(endpoint + "posts")
+                .when().get(URL + "posts")
                 .then()
                     .assertThat()
                         .statusCode(200)//Validate status code
@@ -31,10 +31,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE ONE SPECIFIC POSTS
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodOnePostsTest() {
+    public void getMethodOnePostsTest(String URL) {
         var response = given()
-                .when().get(endpoint + "posts/" + 100)
+                .when().get(URL + "posts/" + 100)
                 .then()
                     .assertThat()
                         .statusCode(200)//Validate status code
@@ -49,10 +50,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE SIZE OF COMMENTS FOR A POSTS
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodPathParameterCommentsTest() {
+    public void getMethodPathParameterCommentsTest(String URL) {
         var response = given()
-                .when().get(endpoint + "posts/" + 100 + "/comments")
+                .when().get(URL + "posts/" + 100 + "/comments")
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -64,10 +66,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO PASS
      * EXPECT RESULT = VALIDATE SIZE OF COMMENTS FOR A POSTS BUT USING QUERY PARAMETER
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodQueryParameterCommentsTest() {
+    public void getMethodQueryParameterCommentsTest(String URL) {
         var response = given()
-                .when().get(endpoint + "comments?postId="+100)
+                .when().get(URL + "comments?postId="+100)
                 .then()
                 .assertThat()
                     .statusCode(200)//Validate status code of the application
@@ -84,10 +87,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO FAIL
      * EXPECT RESULT = VALIDATE COMMENTS NOT AVAILABLE FOR A postId INVALID
      */
+    @Parameters({"URL"})
     @Test(priority = 3)//Assign priority to execution with TestNG
-    public void getMethodCommentsWithPostIDNotExist() {
+    public void getMethodCommentsWithPostIDNotExist(String URL) {
         var response = given()
-                .when().get(endpoint + "comments?postId="+401)
+                .when().get(URL + "comments?postId="+401)
                 .then()
                     .assertThat()
                         .statusCode(200)//Validate status code of the application
@@ -99,10 +103,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO FAIL
      * EXPECT RESULT = VALIDATE ONE INVALID POSTS AND RETURNED STATUS CODE 404
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodOnePostsInvalidTest() {
+    public void getMethodOnePostsInvalidTest(String URL) {
         var response = given()
-                .when().get(endpoint + "posts/" + 101)
+                .when().get(URL + "posts/" + 101)
                 .then()
                 .assertThat()
                 .statusCode(404);//Validate status code
@@ -114,10 +119,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO FAIL **BUG It doesn't handle exception***
      * EXPECT RESULT = VALIDATE LIST OF THE POST RETURNED WHEN PATH ARE INCORRECT
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodAllPostsURLIncorrectTest() {
+    public void getMethodAllPostsURLIncorrectTest(String URL) {
         var response = given()
-                .when().get(endpoint + "post")
+                .when().get(URL + "post")
                 .then()
                 .assertThat()
                 .statusCode(404);//Validate status code
@@ -128,10 +134,11 @@ public class GetMethod {
      * TYPE OF TEST CASE = TEST TO FAIL
      * EXPECT RESULT = VALIDATE QUERY PARAMETER EMPTY
      */
+    @Parameters({"URL"})
     @Test(priority = 1)//Assign priority to execution with TestNG
-    public void getMethodQueryParameterCommentsEMPTYTest() {
+    public void getMethodQueryParameterCommentsEMPTYTest(String URL) {
         var response = given()
-                .when().get(endpoint + "comments?postId=")
+                .when().get(URL + "comments?postId=")
                 .then()
                 .assertThat()
                 .statusCode(200)//Validate status code of the application
