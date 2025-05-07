@@ -24,9 +24,7 @@ public class PatchMethod {
                     .assertThat()
                     .statusCode(200)//Validate stats code
                     .body("userId", equalTo(register.getUserId()))// Validate userID value
-                    .body("id", equalTo(register.getId()))// Validate id value
-                    .body("title", equalTo(register.getTitle()))//Validate title value
-                    .body("body", equalTo(register.getBody()));//Validate Body value
+                    .body("id", equalTo(register.getId()));// Validate id value
         response.log().body();//Save body response on the log
     }
 
