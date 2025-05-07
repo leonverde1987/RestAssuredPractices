@@ -10,7 +10,7 @@
 
 4.- To execute one by one execute the file testng.xml using TestNG run configuration.
 
-5.- Execute by command mvn clean test and it will be execute in parllel because configurate in the maven-surefire-plugin
+5.- Execute by command "mvn clean test" and it will be execute in parllel because configurate in the maven-surefire-plugin
 
 
 
